@@ -28,7 +28,7 @@ export default function Login() {
       setUser(response.data)
 
     } catch (error) {
-      if (!error?.response.status === 401) {
+      if (!error?.response) {
         setError('Unable to access the server')
       } else if (error.response.status === 401) {
         setError('Invalid credentials')
@@ -43,19 +43,21 @@ export default function Login() {
   };
 
   return (
-    <div className='login-form-wrap'>
+    <div className='container'>
       {user == null ? (
-        <div>
-          <h2>Login</h2>
+        <div className="container-in">
+          <h2>Sign-in</h2>
           <form className='login-form'>
             <input type="email" name="email" placeholder='E-mail' required onChange={(e) => setEmail(e.target.value)} />
             <input type="password" name="password" placeholder='Password' required onChange={(e) => setPassword(e.target.value)} />
             <button type='submit' className='btn-login' onClick={(e) => handleLogin(e)}>Login</button>
           </form>
-          <p>{error}</p>
+          <div className="error">
+            <p>{error}</p>
+          </div>
         </div>
       ) : (
-        <div>
+        <div className="welcome">
           <h2>Olá, {user.name}</h2>
           <button type="button" className="btn-login"onClick={(e) => handleLogout(e)}>Logout</button>
         </div>
