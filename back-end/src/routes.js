@@ -7,6 +7,12 @@ const users = [
     name: 'admin',
     email: 'admin@auth.com',
     password: 'admin'
+  },
+  {
+    id: 2,
+    name: 'Nader',
+    email: 'naderalifares@hotmail.com',
+    password: 'Nader18!'
   }
 ]
 
@@ -18,7 +24,7 @@ routes.post('/login', (req, res) => {
     res.status(200).json(user);
   }
 
- return res.status(401).json({message: 'Invalid Credentials'});
+ return res.status(401).json({message: 'Invalid credentials. Please verify your username and password.'});
 });
 
 module.exports = routes;
